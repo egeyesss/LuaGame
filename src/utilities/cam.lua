@@ -11,7 +11,7 @@ function cam:update(dt)
     local mapW = gameMap.width * gameMap.tilewidth
     local mapH = gameMap.height * gameMap.tileheight
     
- -- calculations to make the cam not look beyond map's borders
+ -- calculations to make the cam not look beyond map's borders:
     if camX < w/2 then
         camX = w/2
     end

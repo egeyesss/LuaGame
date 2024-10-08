@@ -35,7 +35,6 @@ function pause:init()
 end
 
 function pause:open()
-    --dj.play(sounds.ui.menuOpen, "static", "effect")
     self.active = true
     flux.to(pause, 0.25, {alpha = 1}):ease("quadout")
     flux.to(pause, 0.25, {y = pause.trueY}):ease("quadout")
@@ -47,7 +46,6 @@ end
 
 function pause:close()
     self.active = false
-    --dj.play(sounds.ui.menuClose, "static", "effect")
     flux.to(pause, 0.25, {alpha = 0}):ease("quadout"):oncomplete(function() pause.active = false end)
     flux.to(pause, 0.25, {y = pause.fadeY}):ease("quadout")
 
@@ -90,8 +88,6 @@ function pause:draw()
     if self.active then
         love.graphics.setColor(0,0,0,0.7 * pause.alpha)
         love.graphics.rectangle("fill", -10, -10, love.graphics.getWidth() + 20, love.graphics.getHeight() + 20)
-
-        -- now you make the pause screen with buttons
 
         -- Resume
         love.graphics.setColor(0,0,1,pause.alpha) -- button color

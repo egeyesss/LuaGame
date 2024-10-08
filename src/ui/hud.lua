@@ -1,6 +1,7 @@
 function drawHUD()
     drawHP()
     drawMana()
+    --drawCoins()
 end
 
 function drawHP()

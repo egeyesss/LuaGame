@@ -20,4 +20,5 @@ function requireAll()
     require('src/ui/menu')
     require('src/ui/hud')
     require('src/ui/pause')
+    
 end

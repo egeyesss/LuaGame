@@ -2,7 +2,7 @@ function gameStart()
     --setScale()
     love.graphics.setBackgroundColor(26/255, 26/255, 26/255)
 
-    love.graphics.setDefaultFilter("nearest", "nearest")
+    love.graphics.setDefaultFilter("nearest", "nearest");
 
     fullscreen = true
     testWindow = false

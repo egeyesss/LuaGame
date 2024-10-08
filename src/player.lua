@@ -45,7 +45,7 @@ function player:update(dt)
     if pause.active then player.anim:update(dt) end
     if player.state == -1 or gamestate == 0 then return end
 
-    local dirX, dirY = 0, 0
+    local dirX, dirY = 0, 0;
 
     if player.state == 0 then
         if pause.active then player.collider:setType('static') end

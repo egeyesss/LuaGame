@@ -60,7 +60,7 @@ function love.keypressed(key)
 end
 
 function love.mousepressed(x, y, button)
-    if gamestate == 0 then -- if we are in starting menu
+    if gamestate == 0 then -- if user in starting menu
 
         if button == 1 and CheckCollision(100, 350, 200, 40, x, y, 1, 1) then
             gamestate = 1 -- for "Start Game"
@@ -72,7 +72,7 @@ function love.mousepressed(x, y, button)
     
     end
 
-    if gamestate == 2 then -- if we paused the game
+    if gamestate == 2 then -- if user paused the game
     
         if button == 1 and CheckCollision(100, 350, 200, 40, x, y, 1, 1) then
             gamestate = 1 -- for "Resume"
@@ -85,7 +85,7 @@ function love.mousepressed(x, y, button)
 
     end
     
-    if gamestate == 1 then -- if we are in game
+    if gamestate == 1 then -- if user in game
     
     end
     

@@ -12,12 +12,6 @@ sprites.menus = {}
 
 sprites.npc = {}
 
-function initFonts()
-    fonts = {}
-end
-
-initFonts()
-
 sounds = {}
 sounds.enemies = {}
 

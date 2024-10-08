@@ -42,7 +42,9 @@ box.startY = y
 
         love.graphics.draw(box.sprite, ex, ey, nil, 1, 1, 10, 12)
 
-        if box.state == 1 then love.graphics.printf("YOU WON", 400 , 500, 500, "center") end
+        if box.state == 1 then 
+            love.graphics.printf("YOU WON", 400 , 500, 500, "center") 
+        end
 
     end
 

@@ -4,7 +4,7 @@ end
 
 function drawCam()
 
-    love.graphics.scale(1.5)
+    love.graphics.scale(1.4)
 
     if gamestate == 0 then return end
 
