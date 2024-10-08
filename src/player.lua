@@ -12,8 +12,6 @@ player.dirY = 0
 player.moving = false
 player.animSpeed = 0.18
 player.animTimer = 0
-player.attackDir = vector(1,0)
-player.rotateMargin = 0.25
 
 player.maxHealth = 50
 player.health = 50
@@ -100,7 +98,7 @@ function player:update(dt)
     elseif player.state == 1 then
 
     player.animTimer = player.animTimer - dt
-    player.collider:setLinearVelocity((player.attackDir*90):unpack())
+    --player.collider:setLinearVelocity((player.attackDir*90):unpack())
 
     elseif player.state == 1 then
     player.collider:setLinearVelocity(0,0)
@@ -116,8 +114,7 @@ function player:draw()
 
 end
 
-function processBuffer(dt)
-end
+-- commenting out some old functions that were supposed to be used for attacking, converted the game to not an attack based game after some thought
 
 --[[ function player:swingSword()
 
@@ -146,7 +143,7 @@ end
     -- animTimer for sword wind-up
     player.animTimer = 0.075
 
-end ]]--
+end
 
 function player:setDirFromVector(vec)
     local rad = math.atan2(vec.y, vec.x)
@@ -163,4 +160,4 @@ function player:setDirFromVector(vec)
         player.dirX = -1
         player.dirY = -1
     end
-end
+end --]]

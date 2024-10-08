@@ -3,7 +3,6 @@ function requireAll()
     require('src/startup/resources')
 
     require('src/utilities/cam')
-    require('src/utilities/shake')
     require('src/utilities/utils')
     --require('src/utilities/')
     --require('src/utilities/')

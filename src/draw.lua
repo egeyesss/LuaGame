@@ -25,7 +25,7 @@ function drawCam()
     
     --use gameMap.layers[] then gameMap:drawLayer to draw the map
 
-    --world:draw() -- to see hitboxes
+    world:draw() -- to see hitboxes
     box:draw()
 
 end

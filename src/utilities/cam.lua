@@ -11,6 +11,7 @@ function cam:update(dt)
     local mapW = gameMap.width * gameMap.tilewidth
     local mapH = gameMap.height * gameMap.tileheight
     
+ -- calculations to make the cam not look beyond map's borders
     if camX < w/2 then
         camX = w/2
     end
@@ -29,4 +30,6 @@ function cam:update(dt)
     
     cam:lookAt(player.x, player.y)
     cam:lockPosition(camX, camY)
+
+    cam.x, cam.y = cam:position()
 end

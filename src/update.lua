@@ -14,6 +14,5 @@ function updateGame(dt)
 
     cam:update(dt)
     pause:update(dt)
-    shake:update(dt)
 
 end

@@ -1,5 +1,9 @@
 function love.load()
 
+-- game states
+    -- 0: in menu
+    -- 1: in game
+    -- 2: in pause menu
     gamestate = 0
 
     require("src/startup/gameStart")
