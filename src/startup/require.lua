@@ -12,8 +12,7 @@ function requireAll()
     require('src/update')
     require('src/draw')
 
-    require('src/enemies/enemy')
-    require('src/enemies/skeleton')
+    require('src/objects/box')
     --require('src/enemies/')
 
     require('src/worlds/loadMap')

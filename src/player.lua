@@ -6,7 +6,7 @@ player.collider:setCollisionClass('Player')
 player.collider:setFixedRotation(true)
 player.x = 0
 player.y = 0
-player.speed = 200
+player.speed = 100
 player.dirX = 0
 player.dirY = 0
 player.moving = false
@@ -15,16 +15,13 @@ player.animTimer = 0
 player.attackDir = vector(1,0)
 player.rotateMargin = 0.25
 
+player.maxHealth = 50
+player.health = 50
+player.maxMana = 10
+player.mana = 10
+
 -- -1 = in menu
 -- 0 = Normal gameplay
--- 0.5 = Rolling
--- 1 = Sword swing
--- 2 = Use (bomb)
--- 3 = Bow (3: bow drawn, 3.1: recover)
--- 4 = grapple (4: armed, 4.1: launching, 4.2: moving)
--- 10 = Damage stun
--- 11 = Hold item
--- 12 = Transition
 player.state = 0
 
 
@@ -47,16 +44,21 @@ player.anim = player.animations.idle
 
 function player:update(dt)
 
+    if pause.active then player.anim:update(dt) end
+    if player.state == -1 or gamestate == 0 then return end
+
     local dirX, dirY = 0, 0
 
     if player.state == 0 then
+        if pause.active then player.collider:setType('static') end
+        if pause.active == false then player.collider:setType('dynamic') end
 
     if love.keyboard.isDown("w") and not love.keyboard.isDown('s') then
         player.dirY = -1
         dirY = -1
         player.anim = player.animations.up
     end
-    
+
     if love.keyboard.isDown("s") and not love.keyboard.isDown('w') then
         player.dirY = 1
         dirY = 1
@@ -104,18 +106,7 @@ function player:update(dt)
     player.collider:setLinearVelocity(0,0)
     end
 
-if player.animTimer < 0 then
-    if player.state == 1 then
-        player.state = 1.1
-        player.animTimer = 0.25
-        player:swordDamage()
-    elseif player.state == 1.1 then
-        player.state = 0
-        player:resetAnimation(player.dir)
-    end
-end
     player.anim:update(dt)
-
 
 end
 
@@ -126,10 +117,9 @@ function player:draw()
 end
 
 function processBuffer(dt)
-
 end
 
-function player:swingSword()
+--[[ function player:swingSword()
 
     -- The player can only swing their sword if the player.state is 0 (regular gameplay)
     if player.state ~= 0 then
@@ -156,51 +146,7 @@ function player:swingSword()
     -- animTimer for sword wind-up
     player.animTimer = 0.075
 
-end
-
-
-function player:swordDamage()
-    -- Query for enemies to hit with the sword
-    --local hitEnemies = world:queryCircleArea(player:getX(), player:getY(), 24, {'Enemy'})
-
-    local px, py = player.x, player.y
-    local dir = player.attackDir:normalized()
-    local rightDir = dir:rotated(math.pi/2)
-    local leftDir = dir:rotated(math.pi/-2)
-    local polygon = {
-        px + dir.x*20,
-        py + dir.y*20,
-        px + dir:rotated(math.pi/8).x*20,
-        py + dir:rotated(math.pi/8).y*20,
-        px + dir:rotated(math.pi/4).x*20,
-        py + dir:rotated(math.pi/4).y*20,
-        px + dir:rotated(3*math.pi/8).x*20,
-        py + dir:rotated(3*math.pi/8).y*20,
-        px + rightDir.x*22,
-        py + rightDir.y*22,
-        px + rightDir.x*22 + rightDir:rotated(math.pi/2).x*6,
-        py + rightDir.y*22 + rightDir:rotated(math.pi/2).y*6,
-        px + leftDir.x*22 + leftDir:rotated(math.pi/-2).x*6,
-        py + leftDir.y*22 + leftDir:rotated(math.pi/-2).y*6,
-        px + leftDir.x*22,
-        py + leftDir.y*22,
-        px + dir:rotated(3*math.pi/-8).x*20,
-        py + dir:rotated(3*math.pi/-8).y*20,
-        px + dir:rotated(math.pi/-4).x*20,
-        py + dir:rotated(math.pi/-4).y*20,
-        px + dir:rotated(math.pi/-8).x*20,
-        py + dir:rotated(math.pi/-8).y*20,
-    }
-
-    local range = math.random()/4
-    --dj.play(sounds.items.sword, "static", "effect", 1, 1+range)
-
-    local hitEnemies = world:queryPolygonArea(polygon, {'Enemy'})
-    for _,e in ipairs(hitEnemies) do
-        local knockbackDir = getPlayerToSelfVector(e:getX(), e:getY())
-        e.parent:hit(1, knockbackDir, 0.1)
-    end
-end
+end ]]--
 
 function player:setDirFromVector(vec)
     local rad = math.atan2(vec.y, vec.x)

@@ -8,10 +8,12 @@ function updateGame(dt)
 
     player:update(dt)
     world:update(dt)
-    skeleton:update(dt)
-    --enemies:destroyDead()
+    box:update(dt)
+
+    flux.update(dt)
 
     cam:update(dt)
+    pause:update(dt)
     shake:update(dt)
 
 end
